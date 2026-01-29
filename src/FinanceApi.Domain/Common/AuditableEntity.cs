@@ -1,72 +1,60 @@
-namespace FinanceApi.Domain.Common;
+using System;
 
-public abstract class AuditableEntity
+namespace FinanceApi.Domain.Common
 {
-  
-    /// User who created the record
-    /// Usuário que criou o registro  
-    public Guid CreatedBy { get; protected set; }
-
-  
-    /// Creation date and time in UTC
-    /// Data e hora da criação em UTC
-    public DateTime CreatedAtUtc { get; protected set; }
-
-  
-    /// Creation date and time in Brazil local time
-    /// Data e hora da criação no horário do Brasil 
-    public DateTime CreatedAtLocal { get; protected set; }
-
-  
-    /// User who last updated the record
-    /// Usuário que alterou o registro 
-    public Guid? UpdatedBy { get; protected set; }
-
-  
-    /// Last update date and time in UTC
-    /// Data e hora da alteração em UTC
-    public DateTime? UpdatedAtUtc { get; protected set; }
-
-  
-    /// Last update date and time in Brazil local time
-    /// Data e hora da alteração no horário do Brasil  
-    public DateTime? UpdatedAtLocal { get; protected set; }
-
-  
-    /// Indicates whether the record is active
-    /// Indica se o registro está ativo  
-    public bool IsActive { get; protected set; }
-
-    protected AuditableEntity()
+    public abstract class AuditableEntity
     {
-        IsActive = true;
-    }
+        // --- A CORREÇÃO ESTÁ AQUI ---
+        // Toda entidade precisa de identidade. Iniciamos com um Guid novo pra facilitar.
+        public Guid Id { get; set; } = Guid.NewGuid();
+        // -----------------------------
 
-  
-    /// Marks the entity as inactive (soft delete)
-    /// Marca a entidade como inativa (exclusão lógica) 
-    public void Deactivate()
-    {
-        IsActive = false;
-    }
+        /// User who created the record
+        public Guid CreatedBy { get; protected set; }
 
-  
-    /// Sets creation audit data
-    /// Define os dados de auditoria de criação  
-    public void SetCreated(Guid userId, DateTime utcNow, DateTime localNow)
-    {
-        CreatedBy = userId;
-        CreatedAtUtc = utcNow;
-        CreatedAtLocal = localNow;
-    }
+        /// Creation date and time in UTC
+        public DateTime CreatedAtUtc { get; protected set; }
 
-  
-    /// Sets update audit data
-    /// Define os dados de auditoria de alteração
-    public void SetUpdated(Guid userId, DateTime utcNow, DateTime localNow)
-    {
-        UpdatedBy = userId;
-        UpdatedAtUtc = utcNow;
-        UpdatedAtLocal = localNow;
+        /// Creation date and time in Brazil local time
+        public DateTime CreatedAtLocal { get; protected set; }
+
+        /// User who last updated the record
+        public Guid? UpdatedBy { get; protected set; }
+
+        /// Last update date and time in UTC
+        public DateTime? UpdatedAtUtc { get; protected set; }
+
+        /// Last update date and time in Brazil local time
+        public DateTime? UpdatedAtLocal { get; protected set; }
+
+        /// Indicates whether the record is active
+        public bool IsActive { get; protected set; }
+
+        protected AuditableEntity()
+        {
+            IsActive = true;
+        }
+
+        /// Marks the entity as inactive (soft delete)
+        public void Deactivate()
+        {
+            IsActive = false;
+        }
+
+        /// Sets creation audit data
+        public void SetCreated(Guid userId, DateTime utcNow, DateTime localNow)
+        {
+            CreatedBy = userId;
+            CreatedAtUtc = utcNow;
+            CreatedAtLocal = localNow;
+        }
+
+        /// Sets update audit data
+        public void SetUpdated(Guid userId, DateTime utcNow, DateTime localNow)
+        {
+            UpdatedBy = userId;
+            UpdatedAtUtc = utcNow;
+            UpdatedAtLocal = localNow;
+        }
     }
 }

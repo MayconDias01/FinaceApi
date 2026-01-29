@@ -1,4 +1,4 @@
-﻿using FinanceApi.Infrastructure.Data;
+﻿using FinanceApi.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
