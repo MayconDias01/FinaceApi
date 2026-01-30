@@ -8,7 +8,11 @@ namespace FinanceApi.Domain.Entities
     {
         public Money Balance { get; private set; }
 
-        private Wallet() { }
+        // --- CORREÇÃO DO AVISO ---
+        private Wallet()
+        {
+            Balance = default!;
+        }
 
         public Wallet(string currency)
         {

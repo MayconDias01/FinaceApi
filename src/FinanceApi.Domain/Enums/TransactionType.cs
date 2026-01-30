@@ -1,8 +1,8 @@
-﻿using System;
-
-public enum TransactionType
+﻿namespace FinanceApi.Domain.Enums
 {
-    Debit = 1,
-    Credit = 2
-
+    public enum TransactionType
+    {
+        Credit = 1,
+        Debit = 2
+    }
 }

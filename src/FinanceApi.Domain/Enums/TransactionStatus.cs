@@ -1,9 +1,10 @@
-using System;
-
-public enum TransactionStatus
+namespace FinanceApi.Domain.Enums
 {
-    peding = 1,
-    Completed = 2,
-    Failed = 3,
-    Refunded = 4
+    public enum TransactionStatus
+    {
+        Pending = 1,
+        Completed = 2,
+        Failed = 3,
+        Refunded = 4
+    }
 }
