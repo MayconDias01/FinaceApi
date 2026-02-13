@@ -2,6 +2,7 @@
 using FinanceApi.Domain.Interfaces;
 using FinanceApi.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using FinanceApi.Application.UseCases.Wallets.CreateWallet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<FinanceDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateWalletHandler).Assembly));
 
 builder.Services.AddControllers();
 

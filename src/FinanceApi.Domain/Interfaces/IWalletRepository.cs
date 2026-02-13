@@ -9,5 +9,6 @@ namespace FinanceApi.Domain.Interfaces
     {
         Task<Wallet?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task AddAsync(Wallet wallet, CancellationToken cancellationToken = default);
+        Task UpdateAsync(Wallet wallet, CancellationToken cancellationToken = default);
     }
 }

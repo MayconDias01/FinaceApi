@@ -9,16 +9,11 @@ namespace FinanceApi.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Wallet> builder)
         {
-            // Configura a PK
             builder.HasKey(wallet => wallet.Id);
 
-            // PRESTE ATENÇÃO NOS NOMES DAS VARIÁVEIS AQUI EMBAIXO
-            // wallet = A sua classe
-            // navigation = A ferramenta de configuração do EF Core
 
             builder.OwnsOne(wallet => wallet.Balance, navigation =>
             {
-                // Aqui dentro, você DEVE usar 'navigation', e não 'wallet'
 
                 navigation.Property(money => money.Amount)
                     .HasColumnName("BalanceAmount")

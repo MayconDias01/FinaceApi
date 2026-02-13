@@ -78,7 +78,7 @@ namespace FinanceApi.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("WalletId");
 
-                    b.ToTable("Transaction");
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("FinanceApi.Domain.Entities.Wallet", b =>
@@ -139,7 +139,7 @@ namespace FinanceApi.Infrastructure.Persistence.Migrations
 
                             b1.HasKey("TransactionId");
 
-                            b1.ToTable("Transaction");
+                            b1.ToTable("Transactions");
 
                             b1.WithOwner()
                                 .HasForeignKey("TransactionId");

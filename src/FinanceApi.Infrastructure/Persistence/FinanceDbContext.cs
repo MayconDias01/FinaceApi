@@ -12,8 +12,7 @@ namespace FinanceApi.Infrastructure.Persistence
 
         public DbSet<Wallet> Wallets { get; set; }
 
-        // Descomente abaixo quando criar a entidade Transaction
-        // public DbSet<Transaction> Transactions { get; set; } 
+        public DbSet<Transaction> Transactions { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

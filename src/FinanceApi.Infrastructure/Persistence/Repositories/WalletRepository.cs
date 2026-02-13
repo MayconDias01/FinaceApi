@@ -12,23 +12,28 @@ namespace FinanceApi.Infrastructure.Repositories
     {
         private readonly FinanceDbContext _context;
 
-        // CORREÇÃO: Removido o ; que estava aqui antes do {
         public WalletRepository(FinanceDbContext context)
         {
             _context = context;
         }
 
-        // CORREÇÃO: Removido o ; antes do {
         public async Task AddAsync(Wallet wallet, CancellationToken cancellationToken = default)
         {
             await _context.Wallets.AddAsync(wallet, cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        // CORREÇÃO: Removido o ; e ADICIONADO { } em volta do return
         public async Task<Wallet?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Wallets
                 .FirstOrDefaultAsync(w => w.Id == id, cancellationToken);
+        }
+
+        public async Task UpdateAsync(Wallet wallet, CancellationToken cancellationToken = default)
+        {
+            _context.Wallets.Update(wallet);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
